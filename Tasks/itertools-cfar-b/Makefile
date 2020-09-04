@@ -1,0 +1,17 @@
+#!make -f
+
+all: demo
+	./$<
+
+demo:  main.o 
+	clang++-9 -std=c++17 $^ -o demo
+
+
+%.o: %.cpp range.hpp accumulate.hpp filterfalse.hpp compress.hpp
+	clang++-9 -std=c++17 --compile $< -o $@
+
+version:
+	clang++-9 --version
+
+clean:
+	rm -f *.o demo test
